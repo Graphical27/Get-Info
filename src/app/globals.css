@@ -24,3 +24,32 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.font-embed-code {
+  font-family: "Bitcount Prop Single", sans-serif;
+}
+
+.font-sans-code {
+  font-family: "Google Sans Code", sans-serif;
+
+}
+.gradient-bg {
+  position: relative;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Grid overlay */
+.gradient-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.073) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  /* mask-image: removed; */
+  pointer-events: none;
+}
