@@ -127,6 +127,20 @@ export default function Home() {
         hasSearched ? "justify-start pt-10 md:pt-25" : "justify-center"
       }`}
     >
+      <div className="group font-sans-code absolute top-3 left-4 z-50 hidden w-50 max-w-xs flex-col gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-white backdrop-blur-md transition-all hover:bg-white/10 hover:p-4 md:flex">
+        <h3 className=" mt-0.5 flex cursor-help items-center gap-2 font-bold text-white/90  ">
+          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/20 text-[10px]">
+            ?
+          </span>
+          About Google Dorking
+        </h3>
+        <p className="max-h-0 overflow-hidden text-white/70 opacity-0 transition-all duration-500 ease-in-out group-hover:max-h-96 group-hover:opacity-100">
+          Google Dorking (or Google Hacking) uses advanced search operators to
+          find specific information indexed by Google. This tool automates these
+          queries to help you discover publicly available data efficiently.
+        </p>
+      </div>
+
       <a
         href="https://github.com/Graphical27/Get-Info"
         target="_blank"
@@ -142,7 +156,7 @@ export default function Home() {
         >
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
         </svg>
-        <span>
+        <span className={hasSearched ? "hidden md:inline" : ""}>
           Star on GitHub
           {stars !== null && (
             <span className="ml-2 rounded bg-white/10 px-1.5 py-0.5 font-bold text-white/90">
@@ -189,7 +203,7 @@ export default function Home() {
           <div className="font-sans-code flex flex-col items-center justify-center space-y-4 text-white/70">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-white border-t-transparent"></div>
             <p className="text-center text-sm md:text-base">
-              Searching for site:instagram.com intext:{query}...
+              Baking a fresh batch of posts for {query}...
               {jobProgress ? (
                 <span className="ml-2 text-white/50">
                   ({jobProgress.fetched}/{jobProgress.max} pages)
