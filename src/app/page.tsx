@@ -141,7 +141,7 @@ export default function Home() {
         </p>
       </div>
 
-      <a
+      {/* <a
         href="https://github.com/Graphical27/Get-Info"
         target="_blank"
         rel="noopener noreferrer"
@@ -164,7 +164,7 @@ export default function Home() {
             </span>
           )}
         </span>
-      </a>
+      </a> */}
 
       <div
         className={`flex flex-col items-center px-4 transition-all duration-700 ${
