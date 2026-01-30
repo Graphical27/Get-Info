@@ -9,6 +9,7 @@ export async function POST(req: Request) {
     username?: string;
     maxPages?: number;
     pageSize?: number;
+    platforms?: string[];
   } | null;
 
   const username = body?.username?.trim();
@@ -26,6 +27,7 @@ export async function POST(req: Request) {
       username,
       maxPages: body?.maxPages ?? 5,
       pageSize: body?.pageSize ?? 10,
+      platforms: body?.platforms ?? ["instagram"],
     }),
     cache: "no-store",
   });

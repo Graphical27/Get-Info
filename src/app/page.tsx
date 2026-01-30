@@ -45,6 +45,41 @@ export default function Home() {
     max: number;
   } | null>(null);
   const [stars, setStars] = useState<number | null>(null);
+  const [platform, setPlatform] = useState<"instagram" | "reddit">("instagram");
+
+  const getPlatformIcon = (url: string) => {
+    if (url.includes("instagram.com")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="h-4 w-4 text-pink-500"
+        >
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.069-4.85.069-3.204 0-3.584-.012-4.849-.069-3.225-.149-4.771-1.664-4.919-4.919-.058-1.265-.069-1.644-.069-4.849 0-3.205.012-3.584.069-4.849.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+      );
+    }
+    if (url.includes("reddit.com")) {
+      return (
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="h-4 w-4 text-orange-500"
+        >
+          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
+        </svg>
+      );
+    }
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="h-4 w-4 text-gray-500"
+      >
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+      </svg>
+    ); // Default Globe icon
+  };
 
   useEffect(() => {
     fetch("https://api.github.com/repos/Graphical27/Get-Info")
@@ -69,7 +104,12 @@ export default function Home() {
       const startRes = await fetch("/api/search/start", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ username, maxPages: 5, pageSize: 10 }),
+        body: JSON.stringify({
+          username,
+          maxPages: 5,
+          pageSize: 10,
+          platforms: [platform],
+        }),
       });
 
       const startData = (await startRes.json()) as StartJobResponse;
@@ -128,7 +168,7 @@ export default function Home() {
       }`}
     >
       <div className="group font-sans-code absolute top-3 left-4 z-50 hidden w-50 max-w-xs flex-col gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-white backdrop-blur-md transition-all hover:bg-white/10 hover:p-4 md:flex">
-        <h3 className=" mt-0.5 flex cursor-help items-center gap-2 font-bold text-white/90  ">
+        <h3 className="mt-0.5 flex cursor-help items-center gap-2 font-bold text-white/90">
           <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/20 text-[10px]">
             ?
           </span>
@@ -181,9 +221,23 @@ export default function Home() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            placeholder="Enter Instagram ID"
+            placeholder={
+              platform === "reddit"
+                ? "Enter Reddit Username"
+                : "Enter Instagram ID"
+            }
             className="font-sans-code w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-base text-white placeholder-white/50 backdrop-blur-md transition-all focus:border-white/50 focus:bg-white/10 focus:ring-2 focus:ring-white/20 focus:outline-none md:w-96 md:px-6 md:text-lg"
           />
+          <select
+            value={platform}
+            onChange={(e) =>
+              setPlatform(e.target.value as "instagram" | "reddit")
+            }
+            className="font-sans-code w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-base text-white backdrop-blur-md transition-all focus:border-white/50 focus:bg-white/10 focus:ring-2 focus:ring-white/20 focus:outline-none md:w-auto md:text-lg [&>option]:text-black"
+          >
+            <option value="instagram">Instagram</option>
+            <option value="reddit">Reddit</option>
+          </select>
           <button
             onClick={handleSearch}
             className="font-embed-code w-full rounded-lg bg-white px-8 py-3 text-base text-black transition-transform hover:scale-105 hover:bg-gray-200 active:scale-95 md:w-auto md:text-lg"
@@ -238,6 +292,7 @@ export default function Home() {
                       className="group block overflow-hidden rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/10 md:p-6"
                     >
                       <div className="font-sans-code mb-2 flex items-center gap-2 text-xs text-white/50">
+                        {getPlatformIcon(result.url)}
                         {result.displayLink ||
                           (() => {
                             try {
