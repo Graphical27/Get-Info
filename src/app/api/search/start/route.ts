@@ -9,6 +9,7 @@ export async function POST(req: Request) {
     username?: string;
     maxPages?: number;
     pageSize?: number;
+    platform?: string;
     platforms?: string[];
   } | null;
 
@@ -20,6 +21,20 @@ export async function POST(req: Request) {
     );
   }
 
+  const normalizedPlatforms = (() => {
+    const incoming = [
+      ...(Array.isArray(body?.platforms) ? body!.platforms : []),
+      ...(body?.platform ? [body.platform] : []),
+    ];
+
+    const allowed = new Set(["instagram", "reddit"]);
+    const cleaned = incoming
+      .map((p) => p?.trim().toLowerCase())
+      .filter((p): p is string => Boolean(p && allowed.has(p)));
+
+    return cleaned.length > 0 ? Array.from(new Set(cleaned)) : ["instagram"];
+  })();
+
   const res = await fetch(`${PY_BACKEND_URL}/search`, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -27,7 +42,7 @@ export async function POST(req: Request) {
       username,
       maxPages: body?.maxPages ?? 5,
       pageSize: body?.pageSize ?? 10,
-      platforms: body?.platforms ?? ["instagram"],
+      platforms: normalizedPlatforms,
     }),
     cache: "no-store",
   });
