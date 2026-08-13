@@ -31,14 +31,14 @@ body {
 
 .font-sans-code {
   font-family: "Google Sans Code", sans-serif;
-
 }
+
 .gradient-bg {
   position: relative;
   min-height: 100vh;
   background-color: #000000;
   color: #ffffff;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Grid overlay */
@@ -52,4 +52,52 @@ body {
   background-size: 60px 60px;
   /* mask-image: removed; */
   pointer-events: none;
+}
+
+.gradient-bg > * {
+  z-index: 1;
+}
+
+.results-workspace {
+  width: 100%;
+}
+
+.result-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.025), transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 600ms ease;
+  pointer-events: none;
+}
+
+.result-card:hover::before {
+  transform: translateX(100%);
+}
+
+.result-snippet {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.post-preview-image:not(.has-thumbnail) {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(147, 197, 253, 0.1), transparent 32%),
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: auto, 24px 24px, 24px 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
