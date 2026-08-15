@@ -38,7 +38,7 @@ body {
   min-height: 100vh;
   background-color: #000000;
   color: #ffffff;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Grid overlay */
@@ -60,6 +60,46 @@ body {
 
 .results-workspace {
   width: 100%;
+}
+
+.result-detail-panel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  scrollbar-gutter: stable;
+}
+
+.result-detail-panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.result-detail-panel::-webkit-scrollbar-track {
+  margin-block: 18px;
+  background: transparent;
+}
+
+.result-detail-panel::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(
+      180deg,
+      rgba(147, 197, 253, 0.58),
+      rgba(216, 180, 254, 0.42)
+    )
+    padding-box;
+}
+
+.result-detail-panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+      180deg,
+      rgba(147, 197, 253, 0.82),
+      rgba(216, 180, 254, 0.66)
+    )
+    padding-box;
+}
+
+.result-detail-panel::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .result-card::before {

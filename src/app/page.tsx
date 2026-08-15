@@ -220,7 +220,7 @@ function ResultDetailPanel({
         id="result-detail-panel"
         role="dialog"
         aria-label="Google indexed result details"
-        className="result-detail-panel fixed inset-x-3 top-18 bottom-3 z-70 overflow-y-auto rounded-3xl border border-white/15 bg-[#101112]/96 shadow-2xl shadow-black/70 backdrop-blur-2xl lg:sticky lg:inset-auto lg:top-6 lg:z-10 lg:max-h-[calc(100vh-3rem)]"
+        className="result-detail-panel fixed inset-x-3 top-18 bottom-3 z-70 overflow-y-auto rounded-3xl border border-white/15 bg-[#101112]/96 shadow-2xl shadow-black/70 backdrop-blur-2xl lg:sticky lg:inset-auto lg:top-6 lg:z-10 lg:h-fit lg:max-h-[calc(100dvh-3rem)] lg:self-start"
       >
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/8 bg-[#101112]/92 px-5 py-4 backdrop-blur-xl">
           <div className="flex items-center gap-2">
@@ -606,7 +606,7 @@ export default function Home() {
 
       <section
         aria-label="Search results"
-        className={`container mt-8 px-4 pb-16 transition-opacity duration-700 md:mt-4 ${
+        className={`container mt-8 px-4 pb-6 transition-opacity duration-700 md:mt-4 ${
           hasSearched ? "opacity-100" : "invisible opacity-0"
         }`}
       >
@@ -645,7 +645,7 @@ export default function Home() {
             }`}
           >
             <div
-              className={`min-w-0 transition-transform duration-500 ${
+              className={`min-w-0 pb-10 transition-transform duration-500 ${
                 selectedResult ? "lg:-translate-x-2" : ""
               }`}
             >
